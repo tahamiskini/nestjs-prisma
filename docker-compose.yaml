@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - .env
+    ports:
+      - '5432:5432'
+    volumes:
+      - data:/var/libpostgresql/data
+  
+  pg-admin:
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports: 
+      - '5052:5050'
+    
+volumes:
+  data: 
